@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Tag">
+
+    <resultMap type="Tag" id="TagMap">
+        <result column="tag_id" property="tagId"/>
+        <result column="tag_name" property="tagName"/>
+        <result column="tag_type" property="type"/>
+    </resultMap>
+
+    <insert id="addResTagRelation" parameterType="java.util.List">
+        INSERT INTO t_cms_tag_relation(tag_id,res_id,tag_type,tag_name)
+        <foreach collection="list" item="item" separator="UNION ALL">
+            SELECT #{item.tagId},#{item.resId},#{item.tagType},#{item.tagName} FROM DUAL
+        </foreach>
+    </insert>
+
+    <delete id="removeResTagRelation" parameterType="java.lang.String">
+        delete from t_cms_tag_relation t where t.res_id = #{resId}
+    </delete>
+
+    <select id="queryResTagRelation" parameterType="java.lang.String" resultMap="TagMap">
+        select tag_id,tag_name,tag_type from t_cms_tag_relation where res_id = #{resId}
+    </select>
+
+</mapper>
