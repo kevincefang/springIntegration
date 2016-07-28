@@ -22,11 +22,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="weixin" />
+        <module name="springTest" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="1.7">
-      <module name="weixin" target="1.7" />
+    <bytecodeTargetLevel target="1.6">
+      <module name="springTest" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
